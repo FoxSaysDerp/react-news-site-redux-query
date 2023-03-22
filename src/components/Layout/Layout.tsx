@@ -1,4 +1,5 @@
 import { useState, createRef, ReactNode, useEffect } from "react";
+import { MantineProvider } from "@mantine/core";
 import { Aside } from "./Aside";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
@@ -20,12 +21,16 @@ export const Layout = (props: Props) => {
 		}
 	}, [headerRef]);
 	return (
-		<>
+		<MantineProvider
+			withGlobalStyles
+			withNormalizeCSS
+			theme={{ colorScheme: "dark" }}
+		>
 			<Header ref={headerRef} />
 			<span style={{ display: "block", height: headerSpace }} aria-hidden />
 			<main>{children}</main>
 			<Aside />
 			<Footer />
-		</>
+		</MantineProvider>
 	);
 };
