@@ -1,7 +1,6 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Provider } from "react-redux";
-import { useDisclosure } from "@mantine/hooks";
 import { Button } from "@mantine/core";
 import { AiFillInfoCircle } from "react-icons/ai";
 
@@ -11,7 +10,11 @@ import s from "./Header.module.scss";
 import { Popup } from "./Popup";
 
 export const Header = forwardRef<HTMLElement>((_, ref) => {
-	const [opened, { open, close }] = useDisclosure(false);
+	const [isPopupOpen, setisPopupOpen] = useState<boolean>(false);
+	
+	const toggleModal = (): void => {
+		setisPopupOpen((prevState) => !prevState)
+	}
 
 	return (
 		<Provider store={store}>
@@ -21,13 +24,13 @@ export const Header = forwardRef<HTMLElement>((_, ref) => {
 				</Link>
 				<div className={s.itemsWrapper}>
 					<ViewChanger />
-					<Button type="button" onClick={open} variant="default">
+					<Button type="button" onClick={toggleModal} variant="default">
 						<AiFillInfoCircle fontSize={20} />
 						<span style={{ marginLeft: 10 }}>Click me!</span>
 					</Button>
 				</div>
 			</header>
-			<Popup opened={opened} close={close} />
+			<Popup open={isPopupOpen} onClose={() => setisPopupOpen(false)}/>
 		</Provider>
 	);
 });
