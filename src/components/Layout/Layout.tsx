@@ -3,7 +3,7 @@ import { MantineProvider } from "@mantine/core";
 import { Aside } from "./Aside";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-
+import s from "./Layout.module.scss";
 interface Props {
 	children: ReactNode;
 }
@@ -20,6 +20,7 @@ export const Layout = (props: Props) => {
 			setHeaderSpace(offsetHeight + ADDITIONAL_SPACING);
 		}
 	}, [headerRef]);
+
 	return (
 		<MantineProvider
 			withGlobalStyles
@@ -27,9 +28,11 @@ export const Layout = (props: Props) => {
 			theme={{ colorScheme: "dark" }}
 		>
 			<Header ref={headerRef} />
-			<span style={{ display: "block", height: headerSpace }} aria-hidden />
-			<main>{children}</main>
-			<Aside />
+			<hr style={{ height: headerSpace}} className={s.headerSpacer} aria-hidden />
+			<main className={`${s.mainWrapper} container`}>
+				<div className={s.content}>{children}</div>
+				<Aside className={s.aside}/>
+			</main>
 			<Footer />
 		</MantineProvider>
 	);
