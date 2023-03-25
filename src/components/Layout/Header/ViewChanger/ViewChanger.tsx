@@ -1,13 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
-import type { TypedUseSelectorHook } from "react-redux";
-import { SegmentedControl, Center, Box } from "@mantine/core";
+import { SegmentedControl, Center } from "@mantine/core";
 import { BiListUl, BiRectangle } from "react-icons/bi";
 
-import { RootState, AppDispatch } from "@/redux/store";
 import { setView, View } from "@/redux/store/viewSlice";
-
-export const useAppDispatch: () => AppDispatch = useDispatch;
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+import { useAppDispatch, useAppSelector } from "@/hooks";
 
 export const ViewChanger = () => {
 	const dispatch = useAppDispatch();
