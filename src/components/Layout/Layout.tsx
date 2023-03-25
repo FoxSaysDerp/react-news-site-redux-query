@@ -25,13 +25,17 @@ export const Layout = (props: Props) => {
 		<MantineProvider
 			withGlobalStyles
 			withNormalizeCSS
-			theme={{ colorScheme: "dark" }}
+			theme={{ fontFamily: '"Nunito", sans-serif', colorScheme: "dark" }}
 		>
 			<Header ref={headerRef} />
-			<hr style={{ height: headerSpace}} className={s.headerSpacer} aria-hidden />
+			<hr
+				style={{ height: headerSpace }}
+				className={s.headerSpacer}
+				aria-hidden
+			/>
 			<main className={`${s.mainWrapper} container`}>
 				<div className={s.content}>{children}</div>
-				<Aside className={s.aside}/>
+				<Aside className={s.aside} />
 			</main>
 			<Footer />
 		</MantineProvider>
