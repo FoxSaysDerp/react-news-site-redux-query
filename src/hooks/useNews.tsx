@@ -1,6 +1,7 @@
-import { Country } from "@/types";
+import { AxiosError } from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { getNewsByQuery, getNewsByCountry } from "../api/newsApi";
+import { Country } from "@/types";
+import { getNewsByQuery, getNewsByCountry, NewsResponse } from "@/api";
 
 
 export const useNews = () => {
@@ -8,14 +9,14 @@ export const useNews = () => {
    const DAY = HOUR_IN_MILISECONDS * 24;
 
 	const newsByQuery = (query: string) => {
-		return useQuery({
+		return useQuery<NewsResponse, AxiosError>({
 			queryKey: ["query", query],
 			queryFn: async () => await getNewsByQuery(query),
 		});
 	};
 
 	const newsByCountry = (country: Country["name"]) => {
-		return useQuery({
+		return useQuery<NewsResponse, AxiosError>({
 			queryKey: ["country", country],
 			queryFn: async () => await getNewsByCountry(country),
          cacheTime: HOUR_IN_MILISECONDS,

@@ -2,7 +2,7 @@ import axios from "axios";
 import { Article, Country } from "@/types";
 import { countries } from "@/constants";
 
-interface NewsResponse {
+export interface NewsResponse {
 	status: string;
 	totalResults: number;
 	articles: Article[];
