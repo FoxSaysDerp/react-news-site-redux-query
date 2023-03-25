@@ -30,7 +30,7 @@ export const Header = forwardRef<HTMLElement>((_, ref) => {
 					</Button>
 				</div>
 			</header>
-			<Popup open={isPopupOpen} onClose={() => setisPopupOpen(false)}/>
+			{isPopupOpen && <Popup open={isPopupOpen} onClose={() => setisPopupOpen(false)}/>}
 		</Provider>
 	);
 });
