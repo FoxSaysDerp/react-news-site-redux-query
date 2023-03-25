@@ -1,0 +1,33 @@
+.footerContainer {
+	width: 100%;
+	color: var(--white);
+	background-color: var(--light-gray);
+	padding: 20px 0;
+}
+
+.footerWrapper {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+.copyWrapper {
+	display: flex;
+	flex-direction: column;
+	p {
+		margin-bottom: unset;
+	}
+}
+
+.copy {
+	margin-bottom: 15px;
+}
+
+.amountLabel {
+	font-size: 0.75rem;
+}
+
+.amountWrapper {
+	margin-top: -4px;
+	font-size: 1.5rem;
+}
