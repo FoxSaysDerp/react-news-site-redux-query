@@ -7,6 +7,7 @@ interface Props {
 }
 export const RouteFactory: FC<Props> = (props: Props) => {
 	const { routes } = props;
+
 	return (
 		<Routes>
 			{routes.map((route: RouteType) => {
@@ -34,7 +35,13 @@ export const RouteFactory: FC<Props> = (props: Props) => {
 						</Route>
 					);
 				}
-				return null;
+				return (
+					<Route
+						path={route.path}
+						element={route.component}
+						key={route.id}
+					/>
+				);
 			})}
 		</Routes>
 	);
