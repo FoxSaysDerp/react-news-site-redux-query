@@ -1,5 +1,5 @@
-import { Home } from "@/pages/Home";
 import { Route } from "./Routes.types";
+import { Home, Countries, CountryPage } from "@/pages";
 
 export const Routes: Route[] = [
 	{
@@ -8,4 +8,22 @@ export const Routes: Route[] = [
 		name: "Home",
 		component: <Home />,
 	},
+   {
+      id: 'path:/country',
+      path: '/country',
+      subroutes: [
+         {
+            id: 'path:/country:index',
+            path: '/',
+            name: 'Countries',
+            component: <Countries />
+         },
+         {
+            id: 'path:/products/:code',
+            path: ':code',
+            name: 'Country Page',
+            component: <CountryPage />
+         }
+      ]
+   }
 ];
