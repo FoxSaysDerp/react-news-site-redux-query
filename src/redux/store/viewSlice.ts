@@ -12,7 +12,7 @@ const initialState: ViewState = {
 };
 
 const viewSlice = createSlice({
-	name: "search",
+	name: "view",
 	initialState,
 	reducers: {
 		setView: (state, action: PayloadAction<View>) => {
