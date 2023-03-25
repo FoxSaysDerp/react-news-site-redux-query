@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Route as RouteType } from "./Routes.types";
 
 interface Props {
