@@ -1,7 +1,7 @@
-import { useRef, useEffect} from 'react';
+import { useRef, useEffect } from "react";
 import { MdClose } from "react-icons/md";
 
-import { assertIsNode } from '@/utilities';
+import { assertIsNode } from "@/utilities";
 import { usePortal } from "@/hooks";
 import s from "./Popup.module.scss";
 
@@ -16,20 +16,20 @@ export const Popup = (props: Props) => {
 	const wrapperRef = useRef<HTMLDivElement>(null);
 	const { render } = usePortal();
 
-	const handleClickOutside = ({target}: MouseEvent) : void => {
-		assertIsNode(target)
+	const handleClickOutside = ({ target }: MouseEvent): void => {
+		assertIsNode(target);
 		if (wrapperRef.current && !wrapperRef.current.contains(target)) {
 			onClose();
 		}
-	}
+	};
 
 	useEffect(() => {
-		document.addEventListener('click', handleClickOutside, true)
+		document.addEventListener("click", handleClickOutside, true);
 
 		return () => {
-			document.removeEventListener('click', handleClickOutside, true)
-		}
-	}, [])
+			document.removeEventListener("click", handleClickOutside, true);
+		};
+	}, []);
 
 	if (!open) {
 		return null;
@@ -39,9 +39,14 @@ export const Popup = (props: Props) => {
 		<div className={s.popupBackground}>
 			<div className={`${s.popupContainer} container`}>
 				<div className={s.popupWrapper} ref={wrapperRef}>
-					<button type="button" className={s.closeButton} onClick={onClose}>
+					<button
+						type="button"
+						className={s.closeButton}
+						onClick={onClose}
+					>
 						<MdClose />
 					</button>
+					{/* TODO: Fill that */}
 					<div className={s.popupContent}>Test</div>
 				</div>
 			</div>
