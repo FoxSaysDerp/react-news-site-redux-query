@@ -5,7 +5,7 @@ import { Button } from "@mantine/core";
 import { AiFillInfoCircle } from "react-icons/ai";
 
 import { store } from "@/redux/store";
-import { ViewChanger } from "./ViewChanger/ViewChanger";
+import { ViewChanger } from "./ViewChanger";
 import s from "./Header.module.scss";
 import { Popup } from "./Popup";
 
