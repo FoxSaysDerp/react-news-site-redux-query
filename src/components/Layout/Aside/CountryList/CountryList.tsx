@@ -29,7 +29,7 @@ const CountryListItem: FC<ItemProps> = (props: ItemProps) => {
 	return (
 		<li className={s.countryListItem}>
 			<Link
-				to={`/country/${generateSlug(country.name)}`}
+				to={`/country/${country.slug}`}
 				className={`${s.countryListItemLink}`}
 			>
 				<span>{getFlagEmoji(country.code)}</span>
