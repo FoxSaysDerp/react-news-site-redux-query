@@ -8,10 +8,12 @@ import s from "./Popup.module.scss";
 interface Props {
 	open: boolean;
 	onClose: () => void;
+	title?: string;
+	content?: string;
 }
 
 export const Popup = (props: Props) => {
-	const { open, onClose } = props;
+	const { open, onClose, title, content } = props;
 
 	const wrapperRef = useRef<HTMLDivElement>(null);
 	const { render } = usePortal();
@@ -46,8 +48,8 @@ export const Popup = (props: Props) => {
 					>
 						<MdClose />
 					</button>
-					{/* TODO: Fill that */}
-					<div className={s.popupContent}>Test</div>
+					{title && <h3 className={s.popupHeading}>{title}</h3>}
+					<div className={s.popupContent}>{content}</div>
 				</div>
 			</div>
 		</div>

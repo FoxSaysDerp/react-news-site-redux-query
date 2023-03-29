@@ -1,20 +1,18 @@
-import { forwardRef, useState } from "react";
+import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 import { Provider } from "react-redux";
 import { Button } from "@mantine/core";
 import { AiFillInfoCircle } from "react-icons/ai";
 
 import { store } from "@/redux/store";
+import { Popup } from "@/components/Popup";
+import { infoPopup } from "@/constants";
+import { usePopup } from "@/hooks";
 import { ViewChanger } from "./ViewChanger";
 import s from "./Header.module.scss";
-import { Popup } from "@/components/Popup";
 
 export const Header = forwardRef<HTMLElement>((_, ref) => {
-	const [isPopupOpen, setisPopupOpen] = useState<boolean>(false);
-
-	const toggleModal = (): void => {
-		setisPopupOpen((prevState) => !prevState);
-	};
+	const { isOpen, close, toggle } = usePopup();
 
 	return (
 		<Provider store={store}>
@@ -24,14 +22,19 @@ export const Header = forwardRef<HTMLElement>((_, ref) => {
 				</Link>
 				<div className={s.itemsWrapper}>
 					<ViewChanger />
-					<Button type="button" onClick={toggleModal} variant="default">
+					<Button type="button" onClick={toggle} variant="default">
 						<AiFillInfoCircle fontSize={20} />
 						<span style={{ marginLeft: 10 }}>Click me!</span>
 					</Button>
 				</div>
 			</header>
-			{isPopupOpen && (
-				<Popup open={isPopupOpen} onClose={() => setisPopupOpen(false)} />
+			{isOpen && (
+				<Popup
+					open={isOpen}
+					onClose={close}
+					title={infoPopup.title}
+					content={infoPopup.content}
+				/>
 			)}
 		</Provider>
 	);
