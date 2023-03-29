@@ -49,7 +49,7 @@ export const Popup = (props: Props) => {
 						<MdClose />
 					</button>
 					{title && <h3 className={s.popupHeading}>{title}</h3>}
-					<div className={s.popupContent}>{content}</div>
+					<p className={s.popupContent}>{content}</p>
 				</div>
 			</div>
 		</div>
