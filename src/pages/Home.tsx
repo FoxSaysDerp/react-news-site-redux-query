@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo } from "react";
+import { useLayoutEffect, useMemo, useState } from "react";
 import {
 	resetCountry,
 	setQuery,
@@ -9,21 +9,19 @@ import {
 import { topics } from "@/constants";
 import { getRandomElementFromArray } from "@/utilities";
 import { useAppDispatch, useNews } from "@/hooks";
+import { NewsComponent } from "@/components/News/NewsComponent";
 
 export const Home = () => {
 	const { newsByQuery } = useNews();
 
-	const searchQuery = useMemo(
-		() =>
-			getRandomElementFromArray({
-				type: "string",
-				array: topics,
-			}),
-		[]
-	);
-	const { status, data, error } = newsByQuery("bitcoin");
-
 	const dispatch = useAppDispatch();
+
+	const searchQuery = getRandomElementFromArray({
+		type: "string",
+		array: topics,
+	});
+
+	const { status, data, error } = newsByQuery(searchQuery);
 
 	useLayoutEffect(() => {
 		if (data) {
@@ -42,5 +40,5 @@ export const Home = () => {
 		return <div>Error: {error.message}</div>;
 	}
 
-	return <div>Home</div>;
+	return <NewsComponent />;
 };

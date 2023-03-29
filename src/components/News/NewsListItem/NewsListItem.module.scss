@@ -1,0 +1,29 @@
+.itemContainer {
+	display: block;
+	margin: 15px 0;
+}
+
+.headerWrapper {
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+}
+
+.header {
+	color: var(--white);
+	margin: unset;
+	word-wrap: break-word;
+	cursor: pointer;
+}
+
+.itemFooter {
+	display: flex;
+	align-items: center;
+	column-gap: 15px;
+}
+
+.urlWrapper {
+	display: flex;
+	align-items: center;
+	column-gap: 5px;
+}
