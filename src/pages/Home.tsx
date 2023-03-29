@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useState } from "react";
+import { FC, useLayoutEffect } from "react";
 import {
 	resetCountry,
 	setQuery,
@@ -11,7 +11,7 @@ import { getRandomElementFromArray } from "@/utilities";
 import { useAppDispatch, useNews } from "@/hooks";
 import { NewsComponent } from "@/components/News/NewsComponent";
 
-export const Home = () => {
+export const Home: FC = () => {
 	const { newsByQuery } = useNews();
 
 	const dispatch = useAppDispatch();
@@ -25,10 +25,10 @@ export const Home = () => {
 
 	useLayoutEffect(() => {
 		if (data) {
+			dispatch(resetCountry);
 			dispatch(setQuery(searchQuery));
 			dispatch(setNews(data.articles));
 			dispatch(setAmount(data.totalResults));
-			dispatch(resetCountry);
 		}
 	}, [data]);
 

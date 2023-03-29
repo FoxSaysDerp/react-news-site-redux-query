@@ -19,8 +19,8 @@ export const Routes: Route[] = [
             component: <Countries />
          },
          {
-            id: 'path:/products/:code',
-            path: ':code',
+            id: 'path:/country/:country',
+            path: ':country',
             name: 'Country Page',
             component: <CountryPage />
          }
