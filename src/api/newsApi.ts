@@ -18,10 +18,7 @@ export const getNewsByQuery = async (query: string) => {
 	return data;
 };
 
-export const getNewsByCountry = async (country: Country["name"]) => {
-	const countryCode = countries.find(
-		(countryItem) => (countryItem.name = country)
-	);
+export const getNewsByCountryCode = async (countryCode: Country["code"]) => {
 	const { data } = await axios.get<NewsResponse>(
 		`https://newsapi.org/v2/top-headlines?country=${countryCode}&apiKey=${apiKey}`
 	);
