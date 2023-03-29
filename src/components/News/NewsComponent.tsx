@@ -1,9 +1,8 @@
-import { FC, useMemo } from "react";
+import { FC } from "react";
 import { useAppSelector } from "@/hooks";
 import s from "./NewsComponent.module.scss";
 import { NewsListItem } from "./NewsListItem";
-import { Provider } from "react-redux";
-import { store } from "@/redux/store";
+import { NewsTileGrid } from "./NewsTileGrid";
 
 export const NewsComponent: FC = () => {
 	const { view } = useAppSelector((state) => state.view);
@@ -11,13 +10,7 @@ export const NewsComponent: FC = () => {
 		(state) => state.news
 	);
 
-	console.log("query", query);
-	const headingSubsidiary = useMemo(() => {
-		if (query) {
-			return query;
-		}
-		return String(country);
-	}, []);
+	const headingSubsidiary = query ?? String(country);
 
 	return (
 		<>
@@ -34,6 +27,7 @@ export const NewsComponent: FC = () => {
 				news.map((newsItem) => (
 					<NewsListItem key={newsItem.url} {...newsItem} />
 				))}
+			{view === "tiles" && <NewsTileGrid articles={news} />}
 		</>
 	);
 };
