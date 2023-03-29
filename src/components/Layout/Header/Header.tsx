@@ -7,14 +7,14 @@ import { AiFillInfoCircle } from "react-icons/ai";
 import { store } from "@/redux/store";
 import { ViewChanger } from "./ViewChanger";
 import s from "./Header.module.scss";
-import { Popup } from "./Popup";
+import { Popup } from "@/components/Popup";
 
 export const Header = forwardRef<HTMLElement>((_, ref) => {
 	const [isPopupOpen, setisPopupOpen] = useState<boolean>(false);
-	
+
 	const toggleModal = (): void => {
-		setisPopupOpen((prevState) => !prevState)
-	}
+		setisPopupOpen((prevState) => !prevState);
+	};
 
 	return (
 		<Provider store={store}>
@@ -30,7 +30,9 @@ export const Header = forwardRef<HTMLElement>((_, ref) => {
 					</Button>
 				</div>
 			</header>
-			{isPopupOpen && <Popup open={isPopupOpen} onClose={() => setisPopupOpen(false)}/>}
+			{isPopupOpen && (
+				<Popup open={isPopupOpen} onClose={() => setisPopupOpen(false)} />
+			)}
 		</Provider>
 	);
 });
