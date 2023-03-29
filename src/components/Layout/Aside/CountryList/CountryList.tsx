@@ -22,13 +22,12 @@ interface InsideExpandableComponentProps extends InsideComponentsProps {
 
 interface ItemProps {
 	country: Country;
-	key: string;
 }
 
 const CountryListItem: FC<ItemProps> = (props: ItemProps) => {
-	const { country, key } = props;
+	const { country } = props;
 	return (
-		<li key={key} className={s.countryListItem}>
+		<li className={s.countryListItem}>
 			<Link
 				to={`/country/${generateSlug(country.name)}`}
 				className={`${s.countryListItemLink}`}
