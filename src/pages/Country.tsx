@@ -7,14 +7,14 @@ import {
 } from "@/redux/store/newsSlice";
 import { useAppDispatch, useNews } from "@/hooks";
 import { NewsComponent } from "@/components/News/NewsComponent";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { countries } from "@/constants";
 import { Country } from "@/types";
 
 export const CountryPage: FC = () => {
 	const { country: countrySlug } = useParams();
 
-	const country: Country = useMemo(
+	const country: Country | undefined = useMemo(
 		() => countries.find((countryItem) => countryItem.slug === countrySlug),
 		[countrySlug]
 	);
@@ -31,7 +31,7 @@ export const CountryPage: FC = () => {
 	useLayoutEffect(() => {
 		if (data) {
 			dispatch(resetQuery());
-			dispatch(setCountry(country?.name));
+			dispatch(setCountry(country));
 			dispatch(setNews(data.articles));
 			dispatch(setAmount(data.totalResults));
 		}
