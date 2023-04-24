@@ -9,20 +9,24 @@ import { useAppDispatch, useNews } from "@/hooks";
 import { NewsComponent } from "@/components/News/NewsComponent";
 import { useParams } from "react-router-dom";
 import { countries } from "@/constants";
+import { Country } from "@/types";
 
 export const CountryPage: FC = () => {
 	const { country: countrySlug } = useParams();
 
-	const country = useMemo(
+	const country: Country = useMemo(
 		() => countries.find((countryItem) => countryItem.slug === countrySlug),
 		[countrySlug]
 	);
-	console.log("country", country);
+
+	if (!country) {
+		return <Navigate to="/" />;
+	}
 
 	const { newsByCountry } = useNews();
 	const dispatch = useAppDispatch();
 
-	const { status, data, error } = newsByCountry(country?.code);
+	const { status, data, error } = newsByCountry(country.code);
 
 	useLayoutEffect(() => {
 		if (data) {

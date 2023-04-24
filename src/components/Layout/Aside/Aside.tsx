@@ -6,7 +6,7 @@ import s from "./Aside.module.scss";
 import { CountryList } from "./CountryList";
 interface Props extends HTMLAttributes<HTMLDivElement> {
 	callback?: Function;
-	countries: Country[] 
+	countries?: Country[] 
 }
 
 export const Aside: FC<Props> = (props: Props) => {
